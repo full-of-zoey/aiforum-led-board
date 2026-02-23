@@ -64,6 +64,7 @@
             display: flex;
             gap: 14px;
             padding: 2px 0;
+            width: max-content;
             animation: scrollLeft 50s linear infinite;
         }
         .profile-row.reverse {
@@ -496,15 +497,20 @@
             const row2 = document.getElementById('row2');
             const row3 = document.getElementById('row3');
 
-            const cards1 = [...group1, ...group1, ...group1].map(p => createProfileCard(p));
-            const cards2 = [...group2, ...group2, ...group2].map(p => createProfileCard(p));
-            const cards3 = [...group3, ...group3, ...group3].map(p => createProfileCard(p));
+            // Insert logos into one copy first, then triple for identical segments
+            const cards1 = group1.map(p => createProfileCard(p));
+            const cards2 = group2.map(p => createProfileCard(p));
+            const cards3 = group3.map(p => createProfileCard(p));
 
-            row1.innerHTML = insertLogos(cards1, true, 4).join('');
-            row2.innerHTML = insertLogos(cards2, false, 7).join('');
-            row3.innerHTML = insertLogos(cards3, true, 2).join('');
+            const withLogos1 = insertLogos(cards1, true, 4);
+            const withLogos2 = insertLogos(cards2, false, 7);
+            const withLogos3 = insertLogos(cards3, true, 2);
 
-            const speed = 1.75;
+            row1.innerHTML = [...withLogos1, ...withLogos1, ...withLogos1].join('');
+            row2.innerHTML = [...withLogos2, ...withLogos2, ...withLogos2].join('');
+            row3.innerHTML = [...withLogos3, ...withLogos3, ...withLogos3].join('');
+
+            const speed = 8;
             row1.style.animationDuration = `${group1.length * speed}s`;
             row2.style.animationDuration = `${group2.length * speed}s`;
             row3.style.animationDuration = `${group3.length * speed}s`;
