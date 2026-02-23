@@ -1,0 +1,13 @@
+node_modules/
+*.mp4
+frames_*
+.DS_Store
+record.mjs
+package.json
+package-lock.json
+index.html
+assets/header-banner*.png
+assets/Kakao_*.tif
+assets/kakao-*.png
+assets/푸른나무재단-*.png
+assets/\[테크포임팩트\]*
